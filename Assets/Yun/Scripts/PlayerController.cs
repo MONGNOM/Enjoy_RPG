@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigid;
@@ -36,8 +34,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        render = GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
+        render = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -73,9 +71,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump")&&Grounded)
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+          
         }
     }
 

@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class Warrior : PlayerInfo
 {
+    private Animator anim;
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+    
+    private void Update()
+    {
+        PlayerAttack();
+    }
     protected override void PlayerAttack()
     {
-        Debug.Log("근접공격");
+        if (Input.GetButtonDown("Fire1"))
+        { 
+            anim.SetTrigger("Attack");
+        }
     }
+
+    
 }
