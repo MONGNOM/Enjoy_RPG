@@ -11,8 +11,9 @@ public class Portal : MonoBehaviour
   
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && Input.GetButtonDown("Horizontal"))
+        if (collision.CompareTag("Player")) 
         {
+            if(Input.GetKeyDown(KeyCode.UpArrow))
             portal?.Invoke();
         }
     }
