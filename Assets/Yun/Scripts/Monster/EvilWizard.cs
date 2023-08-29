@@ -4,48 +4,186 @@ using UnityEngine;
 
 public class EvilWizard : Monster
 {
-    [SerializeField]
-    private float moveSpeed;
-    [SerializeField]
-    private Transform sight;
-    [SerializeField]
-    private LayerMask layerMask;
+    private StateMachine<State, EvilWizard> stateMachine;
 
-    private Rigidbody2D rigid;
-    private Animator animator;
-
-    private void Awake()
+    protected override void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
+        base.Awake();
+
+        stateMachine = new StateMachine<State, EvilWizard>(this);
+        stateMachine.AddState(State.Idle, new EWIdleState(this, stateMachine));
+        stateMachine.AddState(State.Move, new EWMoveState(this, stateMachine));
+        stateMachine.AddState(State.Attack, new EWAttackState(this, stateMachine));
+        stateMachine.AddState(State.TakeHit, new EWIdleState(this, stateMachine));
+        stateMachine.AddState(State.Death, new EWIdleState(this, stateMachine));
     }
 
-    private void FixedUpdate()
+    private void Start()
     {
-        if (!IsGroundCheck())
-        {
-            Turn();
-        }
+        stateMachine.Init(State.Idle);
     }
 
     private void Update()
     {
-        Move();
+        stateMachine.Update();
     }
 
-    public void Move()
+    protected override void Die()
     {
-        rigid.velocity = new Vector2(transform.right.x, rigid.velocity.y);
+        stateMachine.ChangeState(State.Death);
     }
-   
-    public void Turn()
+
+    private abstract class EvilWizardState : StateBase<State, EvilWizard>
     {
-        transform.Rotate(Vector3.up, 180.0f);
+        protected EvilWizardState(EvilWizard owner, StateMachine<State, EvilWizard> stateMachine) : base(owner, stateMachine)
+        {
+        }
+
+        protected GameObject gameObject => owner.gameObject;
+        protected Transform transform => owner.transform;
+        protected Rigidbody2D rigidbody => owner.rigidbody;
+        protected SpriteRenderer renderer => owner.renderer;
+        protected Animator animator => owner.animator;
+        protected Collider2D collider => owner.collider;
     }
-    
-    private bool IsGroundCheck()
+
+    private class EWIdleState : EvilWizardState
     {
-        Debug.DrawRay(sight.position, Vector2.down, Color.red);
-        return Physics2D.Raycast(sight.position, Vector2.down, 1.0f, layerMask);
+        private Transform target;
+        private float range;
+
+        public EWIdleState(EvilWizard owner, StateMachine<State, EvilWizard> stateMachine) : base(owner, stateMachine)
+        {
+        }
+
+        public override void Init()
+        {
+            target = owner.targetPos;
+            range = owner.range;
+        }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Transition()
+        {
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
+    }
+
+    private class EWMoveState : EvilWizardState
+    {
+        public EWMoveState(EvilWizard owner, StateMachine<State, EvilWizard> stateMachine) : base(owner, stateMachine)
+        {
+        }
+
+        public override void Init()
+        {
+        }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void Transition()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
+    }
+
+    private class EWAttackState : EvilWizardState
+    {
+        public EWAttackState(EvilWizard owner, StateMachine<State, EvilWizard> stateMachine) : base(owner, stateMachine)
+        {
+        }
+
+        public override void Init()
+        {
+        }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void Transition()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
+    }
+
+    private class EWTakeHitState : EvilWizardState
+    {
+        public EWTakeHitState(EvilWizard owner, StateMachine<State, EvilWizard> stateMachine) : base(owner, stateMachine)
+        {
+        }
+
+        public override void Init()
+        {
+        }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void Transition()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
+    }
+
+    private class EWDeathState : EvilWizardState
+    {
+        public EWDeathState(EvilWizard owner, StateMachine<State, EvilWizard> stateMachine) : base(owner, stateMachine)
+        {
+        }
+
+        public override void Init()
+        {
+        }
+
+        public override void Enter()
+        {
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void Transition()
+        {
+        }
+
+        public override void Exit()
+        {
+        }
     }
 }
