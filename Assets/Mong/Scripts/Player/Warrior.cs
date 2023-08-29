@@ -19,6 +19,10 @@ public class Warrior : PlayerInfo
         if (Input.GetButtonDown("Fire1"))
         { 
             anim.SetTrigger("Attack");
+            if (!anim.GetBool("Grounded"))
+            {
+                anim.ResetTrigger("Attack");
+            }
         }
     }
 
