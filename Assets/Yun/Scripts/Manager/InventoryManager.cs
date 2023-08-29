@@ -8,7 +8,7 @@ public class InventoryManager : SingleTon<InventoryManager>
     public List<InventoryItem> items = new List<InventoryItem>();
 
     private void Start()
-    {
+    { 
         inventoryUI = FindObjectOfType<InventoryUI>();
         inventoryUI.UpdateUI();
     }

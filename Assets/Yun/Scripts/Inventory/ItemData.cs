@@ -8,7 +8,5 @@ public class ItemData : ScriptableObject
     public new string name;
     public string description;
     public GameObject prefab;
-    [Space]
-    public float attackPoint;
-    public float weight;
+    public Sprite icon;
 }
