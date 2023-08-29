@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid;
     private Animator anim;
     private SpriteRenderer render;
+    [SerializeField]
+    private GameObject sword;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         render = GetComponentInChildren<SpriteRenderer>();
     }
+   
 
     private void FixedUpdate()
     {
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
+        
 
         UpdateAnimator();
     }
@@ -98,11 +102,15 @@ public class PlayerController : MonoBehaviour
         if (rigid.velocity.x > 0)
         {
             render.flipX = false;
+            sword.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         else if (rigid.velocity.x < 0)
         {
             render.flipX = true;
+            sword.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+
+
         }
     }
 }
