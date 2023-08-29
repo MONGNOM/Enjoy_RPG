@@ -14,11 +14,15 @@ public class InventoryUnit : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textUI;
 
+    [SerializeField]
+    private Image icon;
+
     public void AddItem(InventoryItem inventoryItem)
     {
         useButton.interactable = true;
         InventoryItem = inventoryItem;
         textUI.text = inventoryItem.data.name;
+        icon.sprite = inventoryItem.data.icon;
     }
 
     public void UseItem()
