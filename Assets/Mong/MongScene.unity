@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <AndroidJoystick>/trigger/Jump
+  m_ControlPath: <AndroidJoystick>/trigger
 --- !u!114 &418875313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <AndroidJoystick>/trigger/Attack
+  m_ControlPath: <Joystick>/trigger
 --- !u!114 &1579737968
 MonoBehaviour:
   m_ObjectHideFlags: 0
