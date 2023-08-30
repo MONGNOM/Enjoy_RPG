@@ -2,44 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine<TState, TOwner> where TOwner : MonoBehaviour
+public class StateMachine<TOwner> where TOwner : class
 {
     private TOwner owner;
-    private Dictionary<TState, StateBase<TState, TOwner>> states;
-    private StateBase<TState, TOwner> curState;
+    private State<TOwner> curState;
+    private State<TOwner> preState;
 
-    public StateMachine(TOwner owner)
+    public void Init(TOwner owner, State<TOwner> state)
     {
         this.owner = owner;
-        this.states = new Dictionary<TState, StateBase<TState, TOwner>>();
-    }
+        curState = null;
+        preState = null;
 
-    public void AddState(TState state, StateBase<TState, TOwner> stateBase)
-    {
-        states.Add(state, stateBase);
-    }
-
-    public void Init(TState startState)
-    {
-        foreach (StateBase<TState, TOwner> state in states.Values)
-        {
-            state.Init();
-        }
-
-        curState = states[startState];
-        curState.Enter();
+        ChangeState(state);
     }
 
     public void Update()
     {
-        curState.Update();
-        curState.Transition();
+        if (curState == null)
+        {
+            return;
+        }
+
+        curState.Update(owner);
     }
 
-    public void ChangeState(TState newState)
+    public void ChangeState(State<TOwner> state)
     {
-        curState.Exit();
-        curState = states[newState];
-        curState.Enter();
+        if (state == null)
+        {
+            return;
+        }
+
+        if (curState != null)
+        {
+            preState = curState;
+            curState.Exit(owner);
+        }
+
+        curState = state;
+        curState.Enter(owner);
+    }
+
+    public void ChangePreState()
+    {
+        if (preState == null)
+        {
+            return;
+        }
+
+        ChangeState(preState);
     }
 }
