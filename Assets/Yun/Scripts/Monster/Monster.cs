@@ -15,24 +15,42 @@ public abstract class Monster : MonoBehaviour
         Size
     }
 
-    protected State curState;
+    public Dictionary<State, State<Monster>> state;
+    protected StateMachine<Monster> stateMachine;
 
-    protected new Rigidbody2D rigidbody;
-    protected new Collider2D collider;
-    protected new SpriteRenderer renderer;
-    protected Animator animator;
+    protected Rigidbody2D rigid;
+    protected Collider2D coll;
+    protected SpriteRenderer render;
+    public Animator anim;
 
     protected float range;
     protected float moveSpeed;
-    protected Transform targetPos;
+    protected GameObject target;
 
     protected virtual void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        collider = GetComponent<Collider2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
+        render = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        stateMachine.Update();
+    }
+
+    protected abstract void Attack();
+
     protected abstract void Die();
+
+    public void ChangeState(State<Monster> state)
+    {
+        stateMachine.ChangeState(state);
+    }
+
+    public void ChangePreState()
+    {
+        stateMachine.ChangePreState();
+    }
 }
