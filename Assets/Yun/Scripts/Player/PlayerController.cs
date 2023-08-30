@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+
+    private PlayerInput playerInput;
     private Rigidbody2D rigid;
     private Animator anim;
     private SpriteRenderer render;
@@ -38,8 +42,10 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         render = GetComponentInChildren<SpriteRenderer>();
+        playerInput = GetComponent<PlayerInput>();
     }
-   
+
+    
 
     private void FixedUpdate()
     {
@@ -70,15 +76,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rigid.velocity.y);
+            Debug.Log("움직임감지");
+            Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
+            rigid.velocity = new Vector2(input.x * moveSpeed * Time.deltaTime, rigid.velocity.y);
     }
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump")&&Grounded)
+        if (playerInput.actions["Jump"].triggered &&Grounded)
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-          
         }
     }
 
