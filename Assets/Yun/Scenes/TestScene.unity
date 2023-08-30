@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.92138815, y: 0.00091999996, z: -10}
+  m_LocalPosition: {x: 0.5361818, y: 0.00057, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -273,11 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faedbbb4ccc7f942b0301508bc29e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  sight: {fileID: 1256352694}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
+  anim: {fileID: 0}
 --- !u!50 &645009833
 Rigidbody2D:
   serializedVersion: 4
@@ -1338,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d956e7e0159daac4dad7b2e0de90ba6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 0}
   moveSpeed: 10
   jumpPower: 8
   layerMask:
@@ -3716,3 +3713,4 @@ MonoBehaviour:
   maxExp: 100
   maxLevel: 10
   damage: 1
+  attackColider: {fileID: 0}

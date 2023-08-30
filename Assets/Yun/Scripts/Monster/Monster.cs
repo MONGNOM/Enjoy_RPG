@@ -21,6 +21,7 @@ public abstract class Monster : MonoBehaviour
     protected Rigidbody2D rigid;
     protected Collider2D coll;
     protected SpriteRenderer render;
+    [HideInInspector]
     public Animator anim;
 
     protected float range;

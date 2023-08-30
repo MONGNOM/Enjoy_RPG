@@ -12,7 +12,7 @@ public class InventoryUnit : MonoBehaviour
     private Button useButton;
 
     [SerializeField]
-    private TextMeshProUGUI textUI;
+    private TextMeshProUGUI textAmount;
 
     [SerializeField]
     private Image icon;
@@ -21,7 +21,7 @@ public class InventoryUnit : MonoBehaviour
     {
         useButton.interactable = true;
         InventoryItem = inventoryItem;
-        textUI.text = inventoryItem.data.name;
+        textAmount.text = inventoryItem.data.name;
         icon.sprite = inventoryItem.data.icon;
     }
 
@@ -33,7 +33,7 @@ public class InventoryUnit : MonoBehaviour
     public void RemoveItem()
     {
         useButton.interactable = false;
-        textUI.text = "";
+        textAmount.text = "";
     }
 
  
