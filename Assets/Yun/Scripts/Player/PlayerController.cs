@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -54,10 +55,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        Jump();
-        
-
         UpdateAnimator();
     }
 
@@ -72,21 +69,6 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         Grounded = false;
-    }
-
-    private void Move()
-    {
-            Debug.Log("움직임감지");
-            Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
-            rigid.velocity = new Vector2(input.x * moveSpeed * Time.deltaTime, rigid.velocity.y);
-    }
-
-    private void Jump()
-    {
-        if (playerInput.actions["Jump"].triggered &&Grounded)
-        {
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        }
     }
 
     private void GroundCheck()
@@ -105,6 +87,13 @@ public class PlayerController : MonoBehaviour
     {
         XSpeed = Mathf.Abs(rigid.velocity.x);
         YSpeed = rigid.velocity.y;
+        
+    }
+
+    private void OnMove(InputValue value)
+    {
+        Vector2 input = value.Get<Vector2>();
+        rigid.velocity = new Vector2(input.x * moveSpeed, rigid.velocity.y);
 
         if (rigid.velocity.x > 0)
         {
@@ -116,8 +105,13 @@ public class PlayerController : MonoBehaviour
         {
             render.flipX = true;
             sword.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-
-
         }
+
+    }
+
+    private void OnJump(InputValue value)
+    {
+        if(Grounded)
+        rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
 }
