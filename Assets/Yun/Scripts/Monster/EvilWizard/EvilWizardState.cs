@@ -6,14 +6,21 @@ namespace EWStates
 {
     public class EWIdle : State<Monster>
     {
+        private Transform target;
+        private float traceRange;
+   
         public override void Enter(Monster owner)
         {
-            owner.anim.SetTrigger("Idle");
+            target = owner.target.transform;
+            traceRange = owner.traceRange;
         }
 
         public override void Update(Monster owner)
         {
-            owner.ChangeState(owner.state[Monster.State.Move]);
+            if ((target.position - owner.transform.position).sqrMagnitude < traceRange * traceRange)
+            {
+                owner.ChangeState(owner.state[Monster.State.Move]);
+            }
         }
 
         public override void Exit(Monster owner)
@@ -23,20 +30,38 @@ namespace EWStates
 
     public class EWMove : State<Monster>
     {
+        private Transform target;
+        private float traceRange;
+        private float moveSpeed;
+
         public override void Enter(Monster owner)
         {
-            owner.anim.SetTrigger("Move");
+            target = owner.target.transform;
+            traceRange = owner.traceRange;
+            moveSpeed = owner.moveSpeed;
+            owner.StartCoroutine(Attack(owner));
         }
 
         public override void Update(Monster owner)
         {
-            owner.ChangeState(owner.state[Monster.State.Idle]);
-            owner.ChangeState(owner.state[Monster.State.Attack]);
-
+            Vector2 dir = (target.position - owner.transform.position).normalized;
+            owner.rigid.velocity = dir * moveSpeed;
+            owner.render.flipX = owner.rigid.velocity.x > 0 ? false : true;
+            owner.anim.SetFloat("XSpeed", owner.rigid.velocity.y);
         }
 
         public override void Exit(Monster owner)
         {
+        }
+
+        private IEnumerator Attack(Monster owner)
+        {
+            yield return new WaitForSeconds(1.0f);
+
+            if ((target.position - owner.transform.position).sqrMagnitude < traceRange * traceRange)
+            {
+                owner.ChangeState(owner.state[Monster.State.Idle]);
+            }
         }
     }
 
@@ -44,7 +69,6 @@ namespace EWStates
     {
         public override void Enter(Monster owner)
         {
-            owner.anim.SetTrigger("Attack");
         }
 
         public override void Update(Monster owner)
@@ -60,15 +84,13 @@ namespace EWStates
     {
         public override void Enter(Monster owner)
         {
-            owner.anim.SetTrigger("TakeHit");
-            owner.ChangeState(owner.state[Monster.State.Idle]);
-        }
-
-        public override void Exit(Monster owner)
-        {
         }
 
         public override void Update(Monster owner)
+        {
+        }
+
+        public override void Exit(Monster owner)
         {
         }
     }
@@ -77,14 +99,13 @@ namespace EWStates
     {
         public override void Enter(Monster owner)
         {
-            owner.anim.SetTrigger("Death");
         }
-
-        public override void Exit(Monster owner)
+        
+        public override void Update(Monster owner)
         {
         }
 
-        public override void Update(Monster owner)
+        public override void Exit(Monster owner)
         {
         }
     }

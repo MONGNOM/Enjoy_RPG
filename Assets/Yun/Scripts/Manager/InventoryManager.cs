@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class InventoryManager : SingleTon<InventoryManager>
 {
+    [SerializeField]
     private InventoryUI inventoryUI;
     public List<InventoryItem> items = new List<InventoryItem>();
 
     private void Start()
     { 
-        inventoryUI = FindObjectOfType<InventoryUI>();
         inventoryUI.UpdateUI();
     }
 
