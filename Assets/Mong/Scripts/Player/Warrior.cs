@@ -9,36 +9,26 @@ public class Warrior : PlayerInfo
 {
     public AttackColider attackColider;
     private Animator anim;
-    private PlayerInput input;
-
 
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         attackColider = GetComponentInChildren<AttackColider>();
-        input = GetComponent<PlayerInput>();
 
     }
 
+    private void Start()
+    {
 
+    }
     private void Update()
     {
-        PlayerAttack();
     }
 
     protected override void PlayerAttack()
     {
-       
-        if (input.actions["Attack"].triggered)
-        {
-            Debug.Log("공격감지");
-            anim.SetTrigger("Attack");
-            if (!anim.GetBool("Grounded"))
-            {
-                anim.ResetTrigger("Attack");
-            }
-        }
+
     }
 
     public void AttackStart()
@@ -51,5 +41,18 @@ public class Warrior : PlayerInfo
         attackColider.AttackColiderDisable();
     }
 
-    
+    private void OnAttack(InputValue value)
+    {
+        Debug.Log("공격감지");
+        anim.SetTrigger("Attack");
+        if (!anim.GetBool("Grounded"))
+        {
+            anim.ResetTrigger("Attack");
+        }
+    }
+
+    private void OnSkill(InputValue value)
+    {
+        Debug.Log("워리어 스킬");
+    }
 }
