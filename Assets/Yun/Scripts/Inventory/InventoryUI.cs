@@ -6,6 +6,8 @@ public class InventoryUI : MonoBehaviour
 {
     private InventoryUnit[] inventoryUnits;
 
+    private void Start() => this.gameObject.SetActive(false);
+
     public void UpdateUI()
     {
         inventoryUnits = GetComponentsInChildren<InventoryUnit>();
