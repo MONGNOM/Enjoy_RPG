@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class SkillUi : MonoBehaviour
 {
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
-    public void OpenSkilUiButton()
-    {
-        gameObject.SetActive(true);
-    }
+    public SkillSlot[] skillSlots;
 
-    public void CloseSkilUiButton() 
+    public void UpdateUI()
     { 
-        gameObject.SetActive(false);
-    }
-    void Update()
-    {
-        
+        skillSlots = GetComponentsInChildren<SkillSlot>();
+
+        for (int i = 0; i < skillSlots.Length; ++i)
+        {
+            if (i < SkillManager.Instance.skils.Count)
+            {
+                skillSlots[i].EquipSkill(SkillManager.Instance.skils[i]);
+            }
+            else 
+            {
+                skillSlots[i].UnEquipSkill();
+            }
+        }
     }
 }

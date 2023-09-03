@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -15,11 +18,19 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer render;
     [SerializeField]
     private GameObject sword;
+    public bool interaction;
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpPower;
-    [SerializeField] private LayerMask layerMask;
-    
+    public Attackinteraction attackinteraction;
+
+    [SerializeField] 
+    private float moveSpeed;
+
+    [SerializeField] 
+    private float jumpPower;
+
+    [SerializeField] 
+    private LayerMask layerMask;
+
     private float XSpeed
     {
         get { return anim.GetFloat("XSpeed"); }
@@ -46,7 +57,6 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
-    
 
     private void FixedUpdate()
     {
@@ -87,7 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         XSpeed = Mathf.Abs(rigid.velocity.x);
         YSpeed = rigid.velocity.y;
-        
+
     }
 
     private void OnMove(InputValue value)
@@ -111,7 +121,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        if(Grounded)
-        rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        if (Grounded)
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            interaction = true;
+            attackinteraction.ChangeImage();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            interaction = false;
+            attackinteraction.NotChangeImage();
+        }
     }
 }
+   

@@ -13,7 +13,6 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag("Player")) 
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow))
             portal?.Invoke();
         }
     }

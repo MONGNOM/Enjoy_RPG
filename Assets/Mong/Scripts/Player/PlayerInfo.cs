@@ -7,6 +7,7 @@ public abstract class PlayerInfo : MonoBehaviour
 {
     [SerializeField]
     protected float maxHp;
+    [SerializeField]
     protected float curHp;
 
     [SerializeField]
@@ -22,7 +23,7 @@ public abstract class PlayerInfo : MonoBehaviour
     protected float curLevel = 1;
 
     [SerializeField]
-    protected float damage;
+    protected float str;
 
     protected float moveSpeed;
     private void Awake()
