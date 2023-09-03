@@ -4,40 +4,53 @@ using UnityEngine;
 
 public class InventoryManager : SingleTon<InventoryManager>
 {
-    [SerializeField]
-    private InventoryUI inventoryUI;
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public Item[] initItems;
+    public InventorySlot[] inventorySlots;
+    public GameObject inventoryItemPrefab;
+    public int maxStackedItem = 99;
 
     private void Start()
-    { 
-        inventoryUI.UpdateUI();
-    }
-
-    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        foreach (var item in initItems) 
         {
-            if (inventoryUI.gameObject.activeSelf)
-            {
-                inventoryUI.gameObject.SetActive(false);
-            }
-            else
-            {
-                inventoryUI.gameObject.SetActive(true);
-            }
+            AddItem(item);
         }
     }
 
-    public void AddItem(InventoryItem inventoryitem)
+    public bool AddItem(Item item)
     {
-        items.Add(inventoryitem);
-        inventoryUI.UpdateUI();
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (null != itemInSlot && itemInSlot.item == item && 
+                itemInSlot.count < maxStackedItem && true == itemInSlot.item.isStackable)
+            {
+                itemInSlot.count++;
+                itemInSlot.UpdateCount();
+                return true;
+            }
+        }
+
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (null == itemInSlot)
+            {
+                SpawnNewItem(item, slot);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void DropItem(InventoryItem inventoryItem)
+    private void SpawnNewItem(Item item, InventorySlot slot)
     {
-        items.Remove(inventoryItem);
-        inventoryUI.UpdateUI();
-        Instantiate(inventoryItem.data.prefab);
+        GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
+        InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
+        inventoryItem.InitItem(item);
     }
 }

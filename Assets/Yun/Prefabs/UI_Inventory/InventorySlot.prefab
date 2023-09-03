@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 2816299781417157844}
   - component: {fileID: 7629772928574331386}
   - component: {fileID: 8035491023995695683}
+  - component: {fileID: 4678803136431250028}
+  - component: {fileID: 4374636768486067095}
   m_Layer: 5
-  m_Name: QuickSlotUI
+  m_Name: InventorySlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,3 +78,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4678803136431250028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470720844012273094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0182ef0a365a04fb5c281abcee3cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 8035491023995695683}
+  selectedColor: {r: 1, g: 0.5424528, b: 0.5424528, a: 0}
+  notSelectedColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &4374636768486067095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470720844012273094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 70, y: 70}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
