@@ -24,12 +24,19 @@ public abstract class PlayerInfo : MonoBehaviour
 
     [SerializeField]
     protected float str;
+   
+    Animator animator;
 
     protected float moveSpeed;
-    private void Awake()
+    protected void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();    
+    }
+    protected void Start()
     {
         curHp = maxHp;
         curMp = maxMp;
+        animator.SetFloat("CurHp", curHp);
     }
 
     protected abstract void PlayerAttack();

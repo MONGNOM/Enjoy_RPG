@@ -13,10 +13,13 @@ public class Warrior : PlayerInfo
     private Animator anim;
     public PlayerController player;
     public UnityEvent inter;
+    [SerializeField]
+    private Animator skillEffectAnimator;
 
 
     private void Awake()
     {
+        base.Awake();
         anim = GetComponentInChildren<Animator>();
         attackColider = GetComponentInChildren<AttackColider>();
 
@@ -24,7 +27,8 @@ public class Warrior : PlayerInfo
 
     private void Start()
     {
-
+        base.Start();
+        anim.SetFloat("CurHp", curHp);
     }
     private void Update()
     {
@@ -65,6 +69,8 @@ public class Warrior : PlayerInfo
 
     private void OnSkill(InputValue value)
     {
+        if (!SkillManager.Instance.outslots[0].skilldata)
+            return;
 
         //스킬사용매서드 
         str += SkillManager.Instance.skillData.damageup;
@@ -73,6 +79,10 @@ public class Warrior : PlayerInfo
     private void OnSkill2(InputValue value)
     {
         //스킬사용매서드
+        if (!SkillManager.Instance.outslots[1].skilldata)
+            return;
+
+        skillEffectAnimator.SetTrigger("PowerStrikeEffect");
         anim.SetTrigger("PowerStrike");
     }
 }
