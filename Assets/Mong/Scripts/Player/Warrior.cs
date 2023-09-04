@@ -73,6 +73,7 @@ public class Warrior : PlayerInfo
             return;
 
         //스킬사용매서드 
+        skillEffectAnimator.SetTrigger("PowerUp");
         str += SkillManager.Instance.skillData.damageup;
     }
 

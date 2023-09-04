@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rigid;
     private Animator anim;
-    private SpriteRenderer render;
+    public SpriteRenderer render;
     [SerializeField]
     private GameObject sword;
     public bool interaction;
