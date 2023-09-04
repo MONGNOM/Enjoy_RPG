@@ -14,7 +14,11 @@ public enum ItemType
 [CreateAssetMenu(menuName = "Scriptable Object/Item")]
 public class Item : ScriptableObject
 {
+    [Header("Common")]
     public ItemType type;
     public Sprite image;
     public bool isStackable = true;
+
+    [Header("Only Shop")]
+    public int cost;
 }
