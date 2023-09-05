@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public enum ItemType
 {
@@ -16,9 +13,8 @@ public class Item : ScriptableObject
 {
     [Header("Common")]
     public ItemType type;
+    public string itemName;
     public Sprite image;
     public bool isStackable = true;
-
-    [Header("Only Shop")]
-    public int cost;
+    public int itemCost;
 }
