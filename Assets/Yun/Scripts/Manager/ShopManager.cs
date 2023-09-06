@@ -11,6 +11,7 @@ public class ShopManager : SingleTon<ShopManager>
     public ShopItemSlot[] shopItemSlots;
     public GameObject[] shopItemSlotObjects;
     public Button[] purchaseButtons;
+    public bool isEnoughMoney;
 
     [Header("Coin")]
     public int coins;
@@ -30,8 +31,7 @@ public class ShopManager : SingleTon<ShopManager>
 
     public void UpdateCoin()
     {
-        coinUI.text = $": {coins}";
-        UpdatePurchaseButton();
+        coinUI.text = $"{coins}";
     }
 
     public void UpdateItemData()
@@ -60,7 +60,8 @@ public class ShopManager : SingleTon<ShopManager>
         if (coins >= sellingItems[button].itemCost)
         {
             coins -= sellingItems[button].itemCost;
-            coinUI.text = $": {coins}";
+            InventoryManager.Instance.AddItem(sellingItems[button]);
+            UpdateCoin();
             UpdatePurchaseButton();
         }
     }
