@@ -12,14 +12,13 @@ public class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (null == instance)
             {
-                GameObject gameObject = GameObject.Find(gameObjectName);
-                if (null == gameObject)
+                instance = FindObjectOfType<T>();
+                if (null == instance)
                 {
-                    gameObject = new GameObject();
+                    GameObject gameObject = new GameObject();
                     gameObject.name = gameObjectName;
-                    gameObject.AddComponent<T>();
+                    instance = gameObject.AddComponent<T>();
                 }
-                instance = gameObject.GetOrAddComponent<T>();
             }
             return instance;
         }
