@@ -22,16 +22,18 @@ public class Warrior : PlayerInfo
         base.Awake();
         anim = GetComponentInChildren<Animator>();
         attackColider = GetComponentInChildren<AttackColider>();
-
     }
 
     private void Start()
     {
         base.Start();
-        anim.SetFloat("CurHp", curHp);
     }
     private void Update()
     {
+    }
+    public void Die()
+    {
+        anim.SetTrigger("Die");
     }
 
     protected override void PlayerAttack()

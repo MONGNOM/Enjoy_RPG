@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class PlayerInfo : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public abstract class PlayerInfo : MonoBehaviour
    
     Animator animator;
 
+    public UnityEvent Die;
+
     protected float moveSpeed;
     protected void Awake()
     {
@@ -39,5 +42,10 @@ public abstract class PlayerInfo : MonoBehaviour
         animator.SetFloat("CurHp", curHp);
     }
 
+    private void Update()
+    {
+        if (curHp <= 0)
+            Die?.Invoke();
+    }
     protected abstract void PlayerAttack();
 }

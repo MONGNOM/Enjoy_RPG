@@ -13,12 +13,17 @@ public class PlayerController : MonoBehaviour
 {
 
     private PlayerInput playerInput;
-    private Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     private Animator anim;
     public SpriteRenderer render;
     [SerializeField]
     private GameObject sword;
     public bool interaction;
+    public Bullet bullet;
+    public Transform bulletShooter;
+    public Transform leftbulletShooter;
+
+
 
     public Attackinteraction attackinteraction;
 
@@ -31,7 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] 
     private LayerMask layerMask;
 
-    private float XSpeed
+    public float XSpeed
     {
         get { return anim.GetFloat("XSpeed"); }
         set { anim.SetFloat("XSpeed", value); }
@@ -109,12 +114,19 @@ public class PlayerController : MonoBehaviour
         {
             render.flipX = false;
             sword.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            //bullet.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            bulletShooter.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            //bulletShooter.transform.position = bulletShooter.transform.position;
         }
 
         else if (rigid.velocity.x < 0)
         {
             render.flipX = true;
             sword.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            //bullet.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            bulletShooter.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            //bulletShooter.transform.position = leftbulletShooter.transform.position;  
+
         }
 
     }
