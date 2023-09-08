@@ -14,10 +14,6 @@ public class AttackColider : MonoBehaviour
         collider2D.enabled = false;
 
     }
-    private void Update()
-    {
-       
-    }
     public void AttackColiderEnable()
     {
         collider2D.enabled = true;
