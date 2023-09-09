@@ -1144,8 +1144,8 @@ GameObject:
   m_Component:
   - component: {fileID: 470146978}
   - component: {fileID: 470146977}
-  - component: {fileID: 470146976}
   - component: {fileID: 470146979}
+  - component: {fileID: 470146976}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5939,6 +5939,7 @@ MonoBehaviour:
   - {fileID: 565486862}
   - {fileID: 302839115}
   - {fileID: 165335955}
+  isEnoughMoney: 0
   coins: 70
   coinUI: {fileID: 1518615952}
 --- !u!224 &316040215014002888 stripped
