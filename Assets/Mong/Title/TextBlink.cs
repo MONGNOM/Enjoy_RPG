@@ -18,7 +18,7 @@ public class TextBlink : MonoBehaviour
         {
             flashingText.text = "";
             yield return new WaitForSeconds(0.5f);
-            flashingText.text = "Press to Start";
+            flashingText.text = "Touch to Screen";
             yield return new WaitForSeconds(0.5f);
         }
     }

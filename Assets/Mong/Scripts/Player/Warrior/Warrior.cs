@@ -30,6 +30,24 @@ public class Warrior : PlayerInfo
     }
     private void Update()
     {
+        if (curExp >= maxExp)
+        {
+            if (curLevel >= maxLevel)
+                return;
+
+            Leveup();
+        }
+    }
+
+    public void Leveup()
+    {
+        curExp = 0;
+        maxExp *= 1.5f;
+        maxHp *= 2f;
+        maxMp *= 0.5f;
+        curHp = maxHp;
+        curMp = maxMp;
+        curLevel++;
     }
     public void Die()
     {
@@ -87,5 +105,13 @@ public class Warrior : PlayerInfo
 
         skillEffectAnimator.SetTrigger("PowerStrikeEffect");
         anim.SetTrigger("PowerStrike");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monster"))
+        {
+            curHp -= 30;
+        }
     }
 }
