@@ -213,7 +213,7 @@
             "id": "19b8fb68-66d5-4b26-8ea5-987e523bd2b1",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "TouchScreen",
                     "type": "Button",
                     "id": "fa3df91d-6a5a-41c8-8d5e-616c16f52ef9",
                     "expectedControlType": "Button",
@@ -226,11 +226,11 @@
                 {
                     "name": "",
                     "id": "8d42cc59-ade1-4e4f-9c0e-83f7c9262586",
-                    "path": "",
+                    "path": "<AndroidJoystick>/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "TouchScreen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

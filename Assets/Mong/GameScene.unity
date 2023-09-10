@@ -5693,8 +5693,11 @@ MonoBehaviour:
   maxHp: 50
   curHp: 0
   maxMp: 40
+  curMp: 0
   maxExp: 100
+  curExp: 0
   maxLevel: 10
+  curLevel: 1
   str: 3
   Die:
     m_PersistentCalls:

@@ -6,25 +6,19 @@ using UnityEngine.Events;
 
 public abstract class PlayerInfo : MonoBehaviour
 {
-    [SerializeField]
-    protected float maxHp;
-    [SerializeField]
-    protected float curHp;
+    public float maxHp;
+    public float curHp;
 
-    [SerializeField]
-    protected float maxMp;
-    protected float curMp;
+    public float maxMp;
+    public float curMp;
 
-    [SerializeField]
-    protected float maxExp = 100;
-    protected float curExp = 0;
+    public float maxExp = 100;
+    public float curExp = 0;
 
-    [SerializeField]
-    protected float maxLevel = 10;
-    protected float curLevel = 1;
+    public float maxLevel = 10;
+    public float curLevel = 1;
 
-    [SerializeField]
-    protected float str;
+    public float str;
    
     Animator animator;
 

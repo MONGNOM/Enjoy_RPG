@@ -235,7 +235,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
             ""id"": ""19b8fb68-66d5-4b26-8ea5-987e523bd2b1"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""TouchScreen"",
                     ""type"": ""Button"",
                     ""id"": ""fa3df91d-6a5a-41c8-8d5e-616c16f52ef9"",
                     ""expectedControlType"": ""Button"",
@@ -248,11 +248,11 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8d42cc59-ade1-4e4f-9c0e-83f7c9262586"",
-                    ""path"": """",
+                    ""path"": ""<AndroidJoystick>/trigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""TouchScreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -282,7 +282,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         m_Player_Skill2 = m_Player.FindAction("Skill2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_TouchScreen = m_UI.FindAction("TouchScreen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -407,12 +407,12 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_TouchScreen;
     public struct UIActions
     {
         private @PlayerAction m_Wrapper;
         public UIActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @TouchScreen => m_Wrapper.m_UI_TouchScreen;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,16 +422,16 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
+                @TouchScreen.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTouchScreen;
+                @TouchScreen.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTouchScreen;
+                @TouchScreen.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTouchScreen;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @TouchScreen.started += instance.OnTouchScreen;
+                @TouchScreen.performed += instance.OnTouchScreen;
+                @TouchScreen.canceled += instance.OnTouchScreen;
             }
         }
     }
@@ -455,6 +455,6 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnTouchScreen(InputAction.CallbackContext context);
     }
 }
