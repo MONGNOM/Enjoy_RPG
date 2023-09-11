@@ -4,28 +4,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEditorInternal.ReorderableList;
 
-public class EquipMentWindow : MonoBehaviour, IBeginDragHandler, IEndDragHandler ,IDragHandler
+public class StorageWindow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public static Vector2 defaultPos;
-
-
+    [HideInInspector]
+    public Vector2 defaultPos;
     public void OnBeginDrag(PointerEventData eventData)
     {
-        defaultPos = this.transform.position;
+        defaultPos = transform.position;
         transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector2 currentPos = eventData.position;
-        this.transform.position = currentPos;
+        transform.position = eventData.position;
     }
-
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        defaultPos = mousePos;
+        defaultPos = eventData.position;
     }
 
+   
 }
