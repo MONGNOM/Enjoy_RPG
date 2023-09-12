@@ -19,9 +19,10 @@ public class StorageItem : MonoBehaviour , IBeginDragHandler , IEndDragHandler ,
     public Transform parentAfterDrag;
 
     //아이템에 대한 정보를 가져올 곳
-    public void addItem(Item item)
+    public void addItem(Item newitem)
     {
-        itemPrefabs.sprite = item.image;
+        item = newitem;
+        itemPrefabs.sprite = newitem.image;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -55,7 +56,7 @@ public class StorageItem : MonoBehaviour , IBeginDragHandler , IEndDragHandler ,
         }
         else
         {
-            StorageManager.Instance.RemoveItem(this);
+            StorageManager.Instance.RemoveItem(this.item);
             Destroy(gameObject);
         }
     }
