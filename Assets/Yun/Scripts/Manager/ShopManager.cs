@@ -11,7 +11,6 @@ public class ShopManager : SingleTon<ShopManager>
     public ShopItemSlot[] shopItemSlots;
     public GameObject[] shopItemSlotObjects;
     public Button[] purchaseButtons;
-    public bool isEnoughMoney;
 
     [Header("Coin")]
     public int coins;
