@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initItems:
-  - {fileID: 11400000, guid: c274f8d3a3f00e0448b31f706d916aea, type: 2}
-  - {fileID: 11400000, guid: 5edaa05114d91de4e91700d855538907, type: 2}
+  - {fileID: 11400000, guid: d06effe0365891645aaf8565ee85c4a6, type: 2}
+  - {fileID: 11400000, guid: 171a6906d26f6e147baba34b2d568a20, type: 2}
   inventorySlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -88,10 +88,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sellingItems:
-  - {fileID: 11400000, guid: c274f8d3a3f00e0448b31f706d916aea, type: 2}
-  - {fileID: 11400000, guid: 10807ce8c70dd05458001123f4004e91, type: 2}
-  - {fileID: 11400000, guid: 5edaa05114d91de4e91700d855538907, type: 2}
+  - {fileID: 11400000, guid: d06effe0365891645aaf8565ee85c4a6, type: 2}
+  - {fileID: 11400000, guid: ff637adb98f063c4b813be417949e02a, type: 2}
+  - {fileID: 11400000, guid: 171a6906d26f6e147baba34b2d568a20, type: 2}
+  - {fileID: 11400000, guid: 5a309f950cea60c4b8b2b0ff690279c5, type: 2}
+  - {fileID: 11400000, guid: ec1638d5a90a95c41a2a6203dc32ef90, type: 2}
+  - {fileID: 11400000, guid: dc080177d54d70c4f87a344d2945e9e9, type: 2}
   shopItemSlots:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -101,7 +106,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   purchaseButtons:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
