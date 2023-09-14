@@ -251,8 +251,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enjoy RPG
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eae1f342f603b494abfad3fd7c5caac0, type: 2}
-  m_sharedMaterial: {fileID: 7655600228614764852, guid: eae1f342f603b494abfad3fd7c5caac0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e102a887cda5c75458b478bbf42fd1d7, type: 2}
+  m_sharedMaterial: {fileID: -4280487705249035795, guid: e102a887cda5c75458b478bbf42fd1d7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -565,7 +565,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 40d2a824dece5f046a89e9c7ba05fbdd, type: 3}
+    m_Font: {fileID: 12800000, guid: 304cff07c95e5ca429bac9ce7dee63e6, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0

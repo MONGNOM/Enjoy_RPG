@@ -114,14 +114,14 @@ public class LoginPanel : MonoBehaviour
     {
         loginPage.SetActive(true);
         registerPage.SetActive(false);
-        titleText.text = "Login";
+        titleText.text = "로그인";
     }
 
     public void OpenRegisterPage()
     {
         loginPage.SetActive(false);
         registerPage.SetActive(true);
-        titleText.text = "Register";
+        titleText.text = "회원가입";
     }
 }
 
