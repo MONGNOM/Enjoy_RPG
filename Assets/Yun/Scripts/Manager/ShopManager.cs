@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class ShopManager : SingleTon<ShopManager>
 {
+
     [Header("Item")]
-    public Item[] sellingItems;
-    public ShopItemSlot[] shopItemSlots;
-    public GameObject[] shopItemSlotObjects;
-    public Button[] purchaseButtons;
+    [SerializeField] private GameObject shopGroup;
+    [SerializeField] private Item[] sellingItems;
+    [SerializeField] private ShopItemSlot[] shopItemSlots;
+    [SerializeField] private GameObject[] shopItemSlotObjects;
+    [SerializeField] private Button[] purchaseButtons;
 
     [Header("Coin")]
-    public int coins;
-    public TextMeshProUGUI coinUI;
+    [SerializeField] private int coins;
+    [SerializeField] private TextMeshProUGUI coinUI;
 
     private void Start()
     {
@@ -63,5 +65,15 @@ public class ShopManager : SingleTon<ShopManager>
             UpdateCoin();
             UpdatePurchaseButton();
         }
+    }
+
+    public void OnClickOpenShopButton()
+    {
+        shopGroup.SetActive(true);
+    }
+
+    public void OnClickCloseShopButton()
+    {
+        shopGroup.SetActive(false);
     }
 }
