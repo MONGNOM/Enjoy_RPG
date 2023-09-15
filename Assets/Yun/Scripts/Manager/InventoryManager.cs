@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class InventoryManager : SingleTon<InventoryManager>
 {
-    public Item[] initItems;
-    public InventorySlot[] inventorySlots;
-    public GameObject inventoryItemPrefab;
-    public int maxStackedItem = 99;
+    [SerializeField] private GameObject inventoryGroup;
+    [SerializeField] private Item[] initItems;
+    [SerializeField] private InventorySlot[] inventorySlots;
+    [SerializeField] private GameObject inventoryItemPrefab;
+    [SerializeField] private int maxStackedItem = 99;
 
     private void Start()
     {
@@ -52,5 +53,15 @@ public class InventoryManager : SingleTon<InventoryManager>
         GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
         inventoryItem.InitItem(item);
+    }
+
+    public void OnClickOpenInventoryButton()
+    {
+        inventoryGroup.SetActive(true);
+    }
+
+    public void OnClickCloseInventoryButton()
+    {
+        inventoryGroup.SetActive(false);
     }
 }
