@@ -17,4 +17,5 @@ public class Item : ScriptableObject
     public Sprite image;
     public bool isStackable = true;
     public int itemCost;
+    public float itemAbilityValue;
 }
