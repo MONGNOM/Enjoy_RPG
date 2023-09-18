@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditorInternal.ReorderableList;
 
-public class StorageWindow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [HideInInspector]
     public Vector2 defaultPos;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         defaultPos = transform.position;
@@ -23,6 +21,4 @@ public class StorageWindow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     {
         defaultPos = eventData.position;
     }
-
-   
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ShopManager : SingleTon<ShopManager>
 {
-
     [Header("Item")]
     [SerializeField] private GameObject shopGroup;
     [SerializeField] private Item[] sellingItems;
