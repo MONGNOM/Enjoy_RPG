@@ -412,33 +412,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90147fdbd463a24f9ecb97cbcbc5a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackColider: {fileID: 0}
   player: {fileID: 3685403532965961512}
-  inter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  skillEffectAnimator: {fileID: 1830290163}
   maxHp: 100
-  curHp: 0
   maxMp: 20
-  curMp: 0
   maxExp: 100
-  curExp: 0
   maxLevel: 10
+  curHp: 0
+  curMp: 0
+  curExp: 0
   curLevel: 1
-  str: 1
+  str: 50
+  strikeMp: 0
+  buffMp: 0
+  skillEffectAnimator: {fileID: 1830290163}
   warriorDie:
     m_PersistentCalls:
       m_Calls:
@@ -453,6 +439,21 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+  inter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1428690681
 MonoBehaviour:
@@ -513,7 +514,7 @@ GameObject:
   - component: {fileID: 3685403533156290400}
   m_Layer: 0
   m_Name: AttackColider
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
