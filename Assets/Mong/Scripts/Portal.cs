@@ -5,22 +5,39 @@ using UnityEngine.Events;
 
 public class Portal : MonoBehaviour
 {
-    public UnityEvent portal;
+    public UnityEvent homePortal;
+    public UnityEvent MonsterPortal;
+    
+    public Transform MonstertransformPos;
+    public Transform HometransformPos;
 
-    public Transform transformPos;
-  
+    public bool home;
+    PlayerController player;
+
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerController>();
+    }
+    public void MonsterMapPosition()
+    {
+        home = true;
+        player.transform.position = MonstertransformPos.transform.position;
+    }
+    public void HomeMapPosition()
+    {
+        home = false;
+        player.transform.position = HometransformPos.transform.position;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) 
         {
-            portal?.Invoke();
+            if (home)
+            homePortal?.Invoke();
+            else
+            MonsterPortal?.Invoke();
         }
-    }
-
-    public void PositionChange()
-    {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.transform.position = transformPos.transform.position;
     }
 
 }
