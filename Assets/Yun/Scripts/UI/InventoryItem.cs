@@ -33,8 +33,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void UpdateCount()
     {
         countText.text = count.ToString();
-        bool textActive = count > 1;
-        countText.gameObject.SetActive(textActive);
+        bool isTextActive = count > 1;
+        countText.gameObject.SetActive(isTextActive);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
