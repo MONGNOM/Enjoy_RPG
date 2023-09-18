@@ -7,29 +7,68 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.UI;
 
-public class Warrior : PlayerInfo
+public class Warrior : MonoBehaviour
 {
-    public AttackColider attackColider;
+    private AttackColider attackColider;
     private Animator anim;
-    public PlayerController player;
+    private Wizard wizard;
+    private Rigidbody2D rigid;
+    
+    [Header("스탯")]
+    [HideInInspector] public PlayerController player;
+    [HideInInspector] public float maxHp;
+    [HideInInspector] public float maxMp;
+    [HideInInspector] public float maxExp = 100;
+    [HideInInspector] public float maxLevel = 10;
+
+    public float curHp;
+    public float curMp;
+    public float curExp = 0;
+    public float curLevel = 1;
+    
+    [Header("공격력")]
+    [Range(0, 100f)]
+    public float str;
+
+    [Header("스킬필요Mp")]
+    [SerializeField, Range(0, 100f)] private float strikeMp;
+    [SerializeField, Range(0, 100f)] private float buffMp;
+
+    [SerializeField] private Animator skillEffectAnimator;
+
+    [Header("이벤트")]
+    public UnityEvent warriorDie;
     public UnityEvent inter;
-    [SerializeField]
-    private Animator skillEffectAnimator;
+
+    public bool Death
+    { 
+        get { return anim.GetBool("Die"); }
+    }
+
 
 
     private void Awake()
     {
-        base.Awake();
+        rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         attackColider = GetComponentInChildren<AttackColider>();
     }
 
     private void Start()
     {
-        base.Start();
+        curHp = maxHp;
+        curMp = maxMp;
+        anim.SetFloat("CurHp", curHp);
+        wizard = FindObjectOfType<Wizard>();
     }
     private void Update()
     {
+        if (curHp <= 0)
+        {
+            warriorDie?.Invoke();
+        }
+
+
         if (curExp >= maxExp)
         {
             if (curLevel >= maxLevel)
@@ -51,13 +90,21 @@ public class Warrior : PlayerInfo
     }
     public void Die()
     {
-        anim.SetTrigger("Die");
+        anim.SetBool("Die",true);
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
-    protected override void PlayerAttack()
+    public void TakeHit(float damage)
     {
-
+        curHp -= damage;
+        anim.SetTrigger("Hurt");
     }
+
+    public void UseSkill(float mp)
+    {
+        curMp -= mp;
+    }
+
 
     public void AttackStart()
     {
@@ -111,7 +158,7 @@ public class Warrior : PlayerInfo
     {
         if (collision.CompareTag("Monster"))
         {
-            curHp -= 30;
+            TakeHit(wizard.Damage);
         }
     }
 }

@@ -6,66 +6,35 @@ using UnityEngine;
 
 public class WizardMove : StateMachineBehaviour
 {
-    [SerializeField]
-    private Vector2 findTargetSize;
+    [SerializeField] private Vector2 findTargetSize;
 
-    [SerializeField]
-    private PlayerInfo playerInfo;
+    [SerializeField] private Warrior warrior;
 
-    [SerializeField]
-    private MapBlcok mapBlcok;
+    [SerializeField, Range(1, 10)] public float wizardMoveSpeed;
 
-    SpriteRenderer render;
+    [SerializeField] WizardBoxPosition boxPos;
 
-    [SerializeField, Range(1, 10)]
-    public float wizardMoveSpeed;
-
-    Rigidbody2D rigid;
-
-    
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        render = animator.GetComponent<SpriteRenderer>();  
-        rigid = animator.GetComponentInParent<Rigidbody2D>();
+        boxPos = FindObjectOfType<WizardBoxPosition>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        rigid.velocity = new Vector2(wizardMoveSpeed, rigid.velocity.y);
-
-        Collider2D[] collider = Physics2D.OverlapBoxAll(animator.gameObject.transform.position, findTargetSize, 0);
-
-        for (int i = 0; i < collider.Length; i++)
-        { 
-            playerInfo = collider[i].GetComponent<PlayerInfo>();
-            mapBlcok = collider[i].GetComponentInParent<MapBlcok>();
-
-            if (mapBlcok != null && playerInfo == null)
-            {
-                if (!render.flipX)
-                {
-                    render.flipX = true;
-                    wizardMoveSpeed *= 1;
-                }
-                else
-                {
-                    render.flipX = false;
-                    wizardMoveSpeed *= -1;
-
-                }
-            }
-            else if (playerInfo != null)
-            {
-                animator.SetTrigger("Attack");
-            }
+        animator.transform.root.Translate(new Vector3(wizardMoveSpeed, 0, 0) * Time.deltaTime);
+        Collider2D collider = Physics2D.OverlapBox(boxPos.transform.position, findTargetSize, 0);
+        warrior = collider.GetComponent<Warrior>();
+        if (warrior != null)
+        {
+            animator.SetTrigger("Attack");
         }
-        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+
     }
+}
 
    
-}
+

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class Gunner : PlayerInfo
+public class Gunner : MonoBehaviour
 {
     private Animator gunnerAnim;
     public PlayerController player;
@@ -15,21 +15,16 @@ public class Gunner : PlayerInfo
     [SerializeField]
     private Transform bulletStartTransform;
 
-    protected override void PlayerAttack()
-    {
-        // ?? ±ª¿Ã??
-    }
+   
 
     private void Awake()
     {
         player = GetComponent<PlayerController>();
         gunnerAnim = GetComponentInChildren<Animator>();  
-        base.Awake();
     }
 
     void Start()
     {
-        base.Start();
     }
 
 

@@ -107,6 +107,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
+        if (anim.GetBool("Die"))
+            return;
+
         Vector2 input = value.Get<Vector2>();
         rigid.velocity = new Vector2(input.x * moveSpeed, rigid.velocity.y);
 
@@ -114,19 +117,14 @@ public class PlayerController : MonoBehaviour
         {
             render.flipX = false;
             sword.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            //bullet.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            bulletShooter.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            //bulletShooter.transform.position = bulletShooter.transform.position;
+            //bulletShooter.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         else if (rigid.velocity.x < 0)
         {
             render.flipX = true;
             sword.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            //bullet.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            bulletShooter.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            //bulletShooter.transform.position = leftbulletShooter.transform.position;  
-
+            //bulletShooter.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
     }
