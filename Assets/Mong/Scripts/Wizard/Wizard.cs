@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
@@ -14,12 +15,15 @@ public class Wizard : MonoBehaviour
     [HideInInspector] public float curHp;
     private Animator wizardAnim;
     public UnityEvent death;
+    public UnityEvent portalOn;
+    private CapsuleCollider2D capsule;
 
     public float Damage 
     { get => damage; private set => damage = value; }
 
     private void Awake()
     {
+        capsule = GetComponent<CapsuleCollider2D>();
         wizardAnim = GetComponentInChildren<Animator>();
     }
     private void Start()
@@ -59,12 +63,17 @@ public class Wizard : MonoBehaviour
     public void WizardDeath()
     {
         wizardAnim.SetBool("Death", true);
+        capsule.enabled = false;
+        portalOn?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon"))
         {
+            if (wizardAnim.GetBool("Death"))
+                return;
+
             wizardAnim.SetTrigger("TakeHit");
         }
     }
