@@ -188,14 +188,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a83843bb2735f4c8b370c96cfaf37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100000
-  damage: 1
+  maxHp: 1000
+  damage: 15
   eyePosition: {fileID: 1472488215}
   layerMask:
     serializedVersion: 2
     m_Bits: 8
   hpbarPos: {fileID: 0}
   hpbar: {fileID: 0}
+  damageText: {fileID: 1851044538800952215, guid: 91fd80871b85f314fbb9a488206e2fbc, type: 3}
   curHp: 0
   wizardAnim: {fileID: 0}
   death:

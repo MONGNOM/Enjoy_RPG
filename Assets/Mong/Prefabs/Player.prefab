@@ -413,17 +413,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3685403532965961512}
-  maxHp: 100
-  maxMp: 20
   maxExp: 100
   maxLevel: 10
+  maxHp: 100
+  maxMp: 100
   curHp: 0
   curMp: 0
   curExp: 0
   curLevel: 1
-  str: 50
-  strikeMp: 0
-  buffMp: 0
+  str: 100
+  strikeMp: 10
+  buffMp: 5
   skillEffectAnimator: {fileID: 1830290163}
   warriorDie:
     m_PersistentCalls:
