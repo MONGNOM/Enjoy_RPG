@@ -81,6 +81,7 @@ public class Wizard : MonoBehaviour
     {
         wizardAnim.SetBool("Death", true);
         capsule.enabled = false;
+        hpbarPos.gameObject.SetActive(false);
         portalOn?.Invoke();
     }
 
