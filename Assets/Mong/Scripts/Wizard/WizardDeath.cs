@@ -6,25 +6,29 @@ public class WizardDeath : StateMachineBehaviour
 {
     private float dietoTime;
 
-    [SerializeField, Range(0, 10f)]
-    private float dieTime;
-   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    [SerializeField, Range(0, 10f)] private float dieTime;
+    private float giveExp;
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
+        giveExp = Random.Range(100, 500f);
    }
 
    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
         dietoTime += Time.deltaTime;
+        Warrior warrior = FindObjectOfType<Warrior>();
         if (dieTime <= dietoTime)
-        { 
+        {
             Debug.Log("Á×¾î¼­ »ç¶óÁü");
+            warrior.curExp += giveExp;
+            Debug.Log(string.Format("È¹µæÇÑ °æÇèÄ¡ : {0}", giveExp));
             Destroy(animator.gameObject.transform.root.gameObject);
         }
-   }
+    }
 
    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
-       
+        
    }
 
 }
