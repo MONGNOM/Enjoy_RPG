@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   type: 0
-  itemName: Sword
+  itemName: "\uC18C\uB4DC"
   image: {fileID: 21300000, guid: 90e99a7fde056a4418b9fe16084adb5c, type: 3}
   isStackable: 0
   itemCost: 50
