@@ -24,6 +24,11 @@ public class UIManager : SingleTon<UIManager>
     [SerializeField]
     private TextMeshProUGUI exp;
 
+    [SerializeField]
+    private float curexpText;
+    [SerializeField]
+    private string percentText;
+
 
 
 
@@ -38,10 +43,11 @@ public class UIManager : SingleTon<UIManager>
     // Update is called once per frame
     void Update()
     {
+        curexpText = warrior.curExp / warrior.maxExp *100;
         expbar.fillAmount = warrior.curExp / warrior.maxExp;
         level.text = warrior.curLevel.ToString();
-        exp.text = warrior.curExp.ToString();
-        hpbar.fillAmount = warrior.curMp / warrior.maxMp;
+        exp.text = string.Format("{0}{1}", curexpText.ToString(), percentText.ToString());
+        mpbar.fillAmount = warrior.curMp / warrior.maxMp;
         hpbar.fillAmount = warrior.curHp / warrior.maxHp;
     }
 }

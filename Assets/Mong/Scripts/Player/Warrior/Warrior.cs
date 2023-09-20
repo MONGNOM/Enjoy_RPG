@@ -15,19 +15,19 @@ public class Warrior : MonoBehaviour
     private Rigidbody2D rigid;
     
     [HideInInspector] public PlayerController player;
-    [HideInInspector] public float maxHp;
-    [HideInInspector] public float maxMp;
     [HideInInspector] public float maxExp = 100;
     [HideInInspector] public float maxLevel = 10;
 
     [Header("스탯")]
+    public float maxHp;
+    public float maxMp;
     public float curHp;
     public float curMp;
     public float curExp = 0;
     public float curLevel = 1;
     
     [Header("공격력")]
-    [Range(0, 100f)]
+    [Range(0, 10000f)]
     public float str;
 
     [Header("스킬마나")]
@@ -82,18 +82,21 @@ public class Warrior : MonoBehaviour
 
             Leveup();
         }
+
     }
 
     public void Leveup()
     {
-        
+  
+        str *= 1.5f;
         maxExp *= 1.5f;
         maxHp *= 2f;
-        maxMp *= 0.5f;
+        maxMp *= 1.5f;
         curHp = maxHp;
         curMp = maxMp;
         curLevel++;
-        
+
+
     }
 
     public void Resurrection()
@@ -154,22 +157,25 @@ public class Warrior : MonoBehaviour
 
     private void OnSkill(InputValue value)
     {
-        if (!SkillManager.Instance.outslots[0].skilldata)
+        if (!SkillManager.Instance.outslots[0].skilldata || buffMp > curMp)
             return;
 
         //스킬사용매서드 
         skillEffectAnimator.SetTrigger("PowerUp");
         str += SkillManager.Instance.skillData.damageup;
+        UseSkill(buffMp);
+
     }
 
     private void OnSkill2(InputValue value)
     {
         //스킬사용매서드
-        if (!SkillManager.Instance.outslots[1].skilldata)
+        if (!SkillManager.Instance.outslots[1].skilldata || strikeMp > curMp)
             return;
 
         skillEffectAnimator.SetTrigger("PowerStrikeEffect");
         anim.SetTrigger("PowerStrike");
+        UseSkill(strikeMp);
     }
     public float Attackdamage()
     {
@@ -177,21 +183,5 @@ public class Warrior : MonoBehaviour
         float damage = str + randomdamage;
         return damage;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        //if (collision.CompareTag("Monster"))
-        //{
-        //    Wizard wizard = null;
-        //    collision.gameObject.TryGetComponent<Wizard>(out wizard);
-        //    if (wizard == null)
-        //        return;
-        //    else
-        //    {
-        //        //TakeHit(wizard.Damage);
-        //        wizard.Takehit(str);
-        //        Debug.Log("ad");
-        //    }
-        //}
-    }
+  
 }
