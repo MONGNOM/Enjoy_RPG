@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Wizard : MonoBehaviour
 {
     [Header("À§ÀÚµå½ºÅÈ")]
-    [SerializeField, Range(0, 100)]private float maxHp;
+    [SerializeField, Range(0, 100000)]private float maxHp;
     [SerializeField, Range(1, 100)] private float damage;
     [SerializeField] private Transform eyePosition;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Image hpbar;
     [HideInInspector] public float curHp;
-    private Animator wizardAnim;
+    public Animator wizardAnim;
     public UnityEvent death;
     public UnityEvent portalOn;
     private CapsuleCollider2D capsule;
+    public float damageWarrior;
+
+    
 
     public float Damage 
     { get => damage; private set => damage = value; }
@@ -38,6 +44,8 @@ public class Wizard : MonoBehaviour
 
     private void Update()
     {
+        hpbar.fillAmount = curHp / maxHp;
+
         if (curHp <= 0)
         {
             death?.Invoke();
@@ -55,6 +63,13 @@ public class Wizard : MonoBehaviour
         }
     }
 
+    public void Takehit(float damage)
+    {
+        damageWarrior = damage;
+        wizardAnim.SetTrigger("TakeHit");
+        Debug.Log(damage);
+    }
+
     private void Turn()
     {
         transform.Rotate(Vector3.up, 180);
@@ -69,12 +84,19 @@ public class Wizard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon"))
+        if (collision.CompareTag("Player"))
         {
             if (wizardAnim.GetBool("Death"))
                 return;
 
-            wizardAnim.SetTrigger("TakeHit");
+            Warrior warrior = null;
+            collision.gameObject.TryGetComponent<Warrior>(out warrior);
+            if (warrior == null)
+                return;
+            else
+            {
+                warrior.TakeHit(damage);
+            }
         }
     }
 }

@@ -8,6 +8,8 @@ public class Portal : MonoBehaviour
     public UnityEvent portal;
     public Transform transformPos;
 
+
+
    
     public void PortalPosition()
     {

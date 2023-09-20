@@ -14,13 +14,13 @@ public class Warrior : MonoBehaviour
     private Wizard wizard;
     private Rigidbody2D rigid;
     
-    [Header("스탯")]
     [HideInInspector] public PlayerController player;
     [HideInInspector] public float maxHp;
     [HideInInspector] public float maxMp;
     [HideInInspector] public float maxExp = 100;
     [HideInInspector] public float maxLevel = 10;
 
+    [Header("스탯")]
     public float curHp;
     public float curMp;
     public float curExp = 0;
@@ -30,7 +30,7 @@ public class Warrior : MonoBehaviour
     [Range(0, 100f)]
     public float str;
 
-    [Header("스킬필요Mp")]
+    [Header("스킬마나")]
     [SerializeField, Range(0, 100f)] private float strikeMp;
     [SerializeField, Range(0, 100f)] private float buffMp;
 
@@ -40,9 +40,15 @@ public class Warrior : MonoBehaviour
     public UnityEvent warriorDie;
     public UnityEvent inter;
 
+    public float EXP
+    {
+        get { return curExp; }
+        set { curExp = value; }
+    }
     public bool Death
     { 
         get { return anim.GetBool("Die"); }
+        private set { anim.SetBool("Die", value); }
     }
 
 
@@ -69,7 +75,7 @@ public class Warrior : MonoBehaviour
         }
 
 
-        if (curExp >= maxExp)
+        if (curExp >= maxExp && !anim.GetBool("Die"))
         {
             if (curLevel >= maxLevel)
                 return;
@@ -80,18 +86,30 @@ public class Warrior : MonoBehaviour
 
     public void Leveup()
     {
-        curExp = 0;
+        
         maxExp *= 1.5f;
         maxHp *= 2f;
         maxMp *= 0.5f;
         curHp = maxHp;
         curMp = maxMp;
         curLevel++;
+        
     }
+
+    public void Resurrection()
+    {
+        anim.SetBool("Die", false);
+        curHp = maxHp;
+        curMp = maxMp;
+        curExp =  curExp / 5;
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
     public void Die()
     {
         anim.SetBool("Die",true);
         rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+
     }
 
     public void TakeHit(float damage)
@@ -153,12 +171,27 @@ public class Warrior : MonoBehaviour
         skillEffectAnimator.SetTrigger("PowerStrikeEffect");
         anim.SetTrigger("PowerStrike");
     }
-
+    public float Attackdamage()
+    {
+        float randomdamage = Random.Range(-str * 0.5f, str * 0.5f);
+        float damage = str + randomdamage;
+        return damage;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monster"))
-        {
-            TakeHit(wizard.Damage);
-        }
+        
+        //if (collision.CompareTag("Monster"))
+        //{
+        //    Wizard wizard = null;
+        //    collision.gameObject.TryGetComponent<Wizard>(out wizard);
+        //    if (wizard == null)
+        //        return;
+        //    else
+        //    {
+        //        //TakeHit(wizard.Damage);
+        //        wizard.Takehit(str);
+        //        Debug.Log("ad");
+        //    }
+        //}
     }
 }

@@ -10,10 +10,10 @@ public class WizardTakeHit : StateMachineBehaviour
     private Warrior warrior;
    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
-      warrior = FindObjectOfType<Warrior>();
       wizard = animator.GetComponentInParent<Wizard>();
-      wizard.curHp -= warrior.str;
-   }
+      wizard.curHp -= wizard.damageWarrior;
+      wizard.damageWarrior = 0;
+    }
 
    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
@@ -22,7 +22,7 @@ public class WizardTakeHit : StateMachineBehaviour
 
    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
    {
-       
+        
    }
 
    

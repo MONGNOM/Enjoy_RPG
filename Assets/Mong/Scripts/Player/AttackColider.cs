@@ -6,13 +6,14 @@ using UnityEngine;
 public class AttackColider : MonoBehaviour
 {
     public new BoxCollider2D collider2D;
-   
+    [SerializeField]
+    private Warrior warrior;
 
     private void Awake()
     {
         collider2D = GetComponent<BoxCollider2D>();
         collider2D.enabled = false;
-
+        warrior = GetComponentInParent<Warrior>();
     }
     public void AttackColiderEnable()
     {
@@ -27,7 +28,14 @@ public class AttackColider : MonoBehaviour
     {
         if (collision.CompareTag("Monster"))
         {
-            Debug.Log("몬스터를 공격했다");
+            Wizard wizard = null;
+            collision.gameObject.TryGetComponent<Wizard>(out wizard);
+            if (wizard == null)
+                return;
+            else
+            {
+                wizard.Takehit(warrior.Attackdamage());
+            }
         }
     }
 }
