@@ -14,6 +14,7 @@ public class Wizard : MonoBehaviour
     [SerializeField, Range(1, 100)] private float damage;
     [SerializeField] private Transform eyePosition;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private RectTransform hpbarPos;
     [SerializeField] private Image hpbar;
     [HideInInspector] public float curHp;
     public Animator wizardAnim;
@@ -44,6 +45,7 @@ public class Wizard : MonoBehaviour
 
     private void Update()
     {
+        hpbarPos.transform.position = transform.position;
         hpbar.fillAmount = curHp / maxHp;
 
         if (curHp <= 0)
