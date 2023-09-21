@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class GameManager : SingleTon<GameManager>
 {
-    void Start()
+    public void OnQuit()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        Application.Quit();
     }
 }
