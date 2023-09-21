@@ -14,7 +14,7 @@ public class ShopManager : SingleTon<ShopManager>
     [SerializeField] private Button[] purchaseButtons;
 
     [Header("Coin")]
-    [SerializeField] private int coins;
+    [SerializeField] public int coins;
     [SerializeField] private TextMeshProUGUI coinUI;
 
     private void Start()
@@ -48,7 +48,7 @@ public class ShopManager : SingleTon<ShopManager>
     {
         for (int i = 0; i < sellingItems.Length; i++)
         {
-            if (coins >= sellingItems[i].itemCost)
+            if (coins >= sellingItems[i].itemCost || true == InventoryManager.Instance.HasEmptySlot())
                 purchaseButtons[i].interactable = true;
             else
                 purchaseButtons[i].interactable = false;
@@ -57,12 +57,15 @@ public class ShopManager : SingleTon<ShopManager>
 
     public void UpdatePurchaseItem(int button)
     {
-        if (coins >= sellingItems[button].itemCost)
+        if (true == InventoryManager.Instance.HasEmptySlot())
         {
-            coins -= sellingItems[button].itemCost;
-            InventoryManager.Instance.AddItem(sellingItems[button]);
-            UpdateCoin();
-            UpdatePurchaseButton();
+            if (coins >= sellingItems[button].itemCost)
+            {
+                coins -= sellingItems[button].itemCost;
+                InventoryManager.Instance.AddItem(sellingItems[button]);
+                UpdateCoin();
+                UpdatePurchaseButton();
+            }
         }
     }
 

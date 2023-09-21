@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0182ef0a365a04fb5c281abcee3cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 8035491023995695683}
+  isSelected: 0
+  detectNum: 0
 --- !u!114 &4374636768486067095
 MonoBehaviour:
   m_ObjectHideFlags: 0
