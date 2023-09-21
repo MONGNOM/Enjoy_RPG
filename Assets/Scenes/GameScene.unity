@@ -1102,6 +1102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541883258}
+  - component: {fileID: 1541883265}
   - component: {fileID: 1541883257}
   - component: {fileID: 1541883259}
   - component: {fileID: 1541883262}
@@ -1287,6 +1288,18 @@ MonoBehaviour:
   - {fileID: 1958780125}
   coins: 999
   coinUI: {fileID: 2067464410971186723}
+--- !u!114 &1541883265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541883256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaec201ad4ff124fb6da2ac3563644f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1573624106 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3755374645143994764, guid: 999d959b49f14604a926c9fe2b67c089, type: 3}
@@ -1845,6 +1858,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 177034005195331689, guid: 999d959b49f14604a926c9fe2b67c089, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1541883265}
     - target: {fileID: 314916454170238275, guid: 999d959b49f14604a926c9fe2b67c089, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1893,14 +1910,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1541883257}
-    - target: {fileID: 3755374644684223050, guid: 999d959b49f14604a926c9fe2b67c089, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: eae1f342f603b494abfad3fd7c5caac0, type: 2}
-    - target: {fileID: 3755374644684223050, guid: 999d959b49f14604a926c9fe2b67c089, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3755374645005923702, guid: 999d959b49f14604a926c9fe2b67c089, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
