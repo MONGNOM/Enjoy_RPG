@@ -44,8 +44,8 @@ public class LoginPanel : MonoBehaviour
                     pw == (string)SQLManager.Instance.reader["Password"])
                 {
                     // TODO: 로그인 성공 시
-                    //SceneManager.LoadScene("LoadingScene");
-                    messageText.text = "로그인 성공!";
+                    LoadingController.LoadScene("GameScene");
+                    //messageText.text = "로그인 성공!";
 
                     Debug.Log("로그인 성공!");
                 }
