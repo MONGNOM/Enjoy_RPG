@@ -18495,19 +18495,19 @@ PrefabInstance:
     - target: {fileID: 8388480890149822881, guid: d4b3cc0d24d353d488115b5dbd48a6b8, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: e102a887cda5c75458b478bbf42fd1d7, type: 2}
     - target: {fileID: 8388480890149822881, guid: d4b3cc0d24d353d488115b5dbd48a6b8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -4280487705249035795, guid: e102a887cda5c75458b478bbf42fd1d7, type: 2}
     - target: {fileID: 8388480890196712495, guid: d4b3cc0d24d353d488115b5dbd48a6b8, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: e102a887cda5c75458b478bbf42fd1d7, type: 2}
     - target: {fileID: 8388480890196712495, guid: d4b3cc0d24d353d488115b5dbd48a6b8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -4280487705249035795, guid: e102a887cda5c75458b478bbf42fd1d7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b3cc0d24d353d488115b5dbd48a6b8, type: 3}
 --- !u!224 &2342000592453946854 stripped
