@@ -1,24 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
-    [HideInInspector]
-    public Vector2 defaultPos;
+    private Vector2 offsetPos;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        defaultPos = transform.position;
+        offsetPos = new Vector2(transform.position.x,transform.position.y) - eventData.position;
         transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        defaultPos = eventData.position;
+        transform.position = eventData.position + offsetPos;
     }
 }
