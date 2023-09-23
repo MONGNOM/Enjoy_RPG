@@ -27,12 +27,10 @@ public class WizardIdle : StateMachineBehaviour
         {
             if (warrior != null)
             {
-                Debug.Log("공격");
                 animator.SetTrigger("Attack");
             }
             else
             {
-                Debug.Log("이동");
                 animator.SetTrigger("Move");
             }
         }
@@ -40,7 +38,6 @@ public class WizardIdle : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         idleToTiem = 0;
     }
 }

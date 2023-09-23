@@ -37,7 +37,6 @@ public class Wizard : MonoBehaviour
     }
     private void Start()
     {
-        
         curHp = maxHp;    
     }
 
@@ -71,11 +70,10 @@ public class Wizard : MonoBehaviour
     public void Takehit(float damage)
     {
         damageWarrior = damage;
-        int damageint =Mathf.RoundToInt(damage);
+        int damageint = Mathf.RoundToInt(damage);
         damageText.text = damageint.ToString();
         wizardAnim.SetTrigger("TakeHit");
         Instantiate(damageText,hpbarPos);
-        Debug.Log(damage);
     }
 
 

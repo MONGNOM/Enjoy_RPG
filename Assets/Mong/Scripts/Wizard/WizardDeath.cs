@@ -19,9 +19,7 @@ public class WizardDeath : StateMachineBehaviour
         Warrior warrior = FindObjectOfType<Warrior>();
         if (dieTime <= dietoTime)
         {
-            Debug.Log("Á×¾î¼­ »ç¶óÁü");
             warrior.curExp += giveExp;
-            Debug.Log(string.Format("È¹µæÇÑ °æÇèÄ¡ : {0}", giveExp));
             Destroy(animator.gameObject.transform.root.gameObject);
         }
     }
