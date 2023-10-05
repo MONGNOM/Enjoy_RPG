@@ -3790,7 +3790,7 @@ MonoBehaviour:
   bundleName: player
   bundleName2: controll
   bundleName3: sprite
-  bundleName4: mat
+  bundleName4: playermat
   assetName: Player
 --- !u!4 &600925356
 Transform:
