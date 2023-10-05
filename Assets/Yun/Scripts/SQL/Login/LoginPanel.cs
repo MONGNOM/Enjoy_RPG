@@ -45,19 +45,21 @@ public class LoginPanel : MonoBehaviour
                 {
                     // TODO: 로그인 성공 시
                     LoadingController.LoadScene("GameScene");
-                    //messageText.text = "로그인 성공!";
+                    messageText.text = "로그인되었습니다.";
 
-                    Debug.Log("로그인 성공!");
+                    Debug.Log("로그인되었습니다.");
                 }
                 else
                 {
+                    messageText.text = "아이디 혹은 비밀번호가 \n일치하지 않습니다.";
                     Debug.Log("비밀번호가 일치하지 않습니다!");
                 }
             }
         }
         else
         {
-            Debug.Log("아이디 혹은 비밀번호가 잘못되었습니다!");
+            messageText.text = "아이디 혹은 비밀번호가 \n일치하지 않습니다.";
+            Debug.Log("아이디 혹은 비밀번호가 잘못되었습니다.");
         }
         SQLManager.Instance.reader.Close();
     }
@@ -71,6 +73,7 @@ public class LoginPanel : MonoBehaviour
 
         if (SQLManager.Instance.reader.HasRows)
         {
+            messageText.text = "중복된 아이디입니다.";
             Debug.Log("중복된 아이디입니다!");
 
             if (!SQLManager.Instance.reader.IsClosed)
@@ -85,6 +88,7 @@ public class LoginPanel : MonoBehaviour
             try
             {
                 SQLManager.Instance.SQLUpdateOrInsert(query);
+                messageText.text = "회원가입되었습니다.";
                 Debug.Log("회원가입 완료!");
             }
             catch (Exception e)

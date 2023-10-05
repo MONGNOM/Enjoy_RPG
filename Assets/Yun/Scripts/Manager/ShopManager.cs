@@ -14,7 +14,7 @@ public class ShopManager : SingleTon<ShopManager>
     [SerializeField] private Button[] purchaseButtons;
 
     [Header("Coin")]
-    [SerializeField] public int coins;
+    public int coins;
     [SerializeField] private TextMeshProUGUI coinUI;
 
     private void Start()

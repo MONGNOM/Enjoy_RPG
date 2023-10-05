@@ -8,6 +8,7 @@ public class InventoryManager : SingleTon<InventoryManager>
     [SerializeField] private GameObject inventoryGroup;
     [SerializeField] private Item[] initItems;
     [SerializeField] private InventorySlot[] inventorySlots;
+    [SerializeField] private InventorySlot[] storageSlots;
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private int maxStackedItem = 99;
     private int selectedSlot = -1;
