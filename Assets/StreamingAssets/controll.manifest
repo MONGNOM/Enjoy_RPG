@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 3668390208
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bf7d161b7337cd56a9b2382fe933345f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cda483f6ed45426ab843a91081928d3a
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Mong/Player/WarriorController.controller
+Dependencies:
+- C:/Users/wjdah/Project-JH/Assets/StreamingAssets/sprite

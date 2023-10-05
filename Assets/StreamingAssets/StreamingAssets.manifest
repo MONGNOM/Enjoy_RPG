@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 1056998877
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: player
+      Dependencies:
+        Dependency_0: controll
+        Dependency_1: sprite
+        Dependency_2: playermat
+    Info_1:
+      Name: map
+      Dependencies:
+        Dependency_0: player
+    Info_2:
+      Name: controll
+      Dependencies:
+        Dependency_0: sprite
+    Info_3:
+      Name: sprite
+      Dependencies: {}
+    Info_4:
+      Name: playermat
+      Dependencies: {}

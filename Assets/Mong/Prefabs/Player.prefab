@@ -350,8 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d956e7e0159daac4dad7b2e0de90ba6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
-  render: {fileID: 0}
+  rigid: {fileID: 3685403532965961513}
+  render: {fileID: 3685403532431575198}
   sword: {fileID: 3685403532198772552}
   interaction: 0
   bullet: {fileID: 1634894992087161431, guid: 358ea48a0454a4e4eac08be4aa6eb319, type: 3}
@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90147fdbd463a24f9ecb97cbcbc5a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 552744214d7b42d41a2f7d1cf940528b, type: 2}
   player: {fileID: 3685403532965961512}
   maxExp: 100
   maxLevel: 10
