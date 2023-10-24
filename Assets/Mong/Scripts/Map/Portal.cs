@@ -7,14 +7,18 @@ public class Portal : MonoBehaviour
 {
     public UnityEvent portal;
     public Transform transformPos;
+    public Transform monsterformPos;
 
 
 
-   
     public void PortalPosition()
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
+        Warrior player = FindObjectOfType<Warrior>();
+        if (player.curLevel >= 5 || player.Death)
         player.transform.position = transformPos.transform.position;
+        else
+        player.transform.position = monsterformPos.transform.position;
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)

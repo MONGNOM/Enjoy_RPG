@@ -22,7 +22,9 @@ public class Wizard : MonoBehaviour
     public Animator wizardAnim;
     public UnityEvent death;
     public UnityEvent portalOn;
+    public UnityEvent portalOff;
     private CapsuleCollider2D capsule;
+    private BoxCollider2D box;
     public float damageWarrior;
 
     
@@ -34,6 +36,7 @@ public class Wizard : MonoBehaviour
     {
         capsule = GetComponent<CapsuleCollider2D>();
         wizardAnim = GetComponentInChildren<Animator>();
+        box = GetComponent<BoxCollider2D>();
     }
     private void Start()
     {
@@ -76,6 +79,17 @@ public class Wizard : MonoBehaviour
         Instantiate(damageText,hpbarPos);
     }
 
+    public void WizardResurrection()
+    {
+        wizardAnim.ResetTrigger("TakeHit");
+        wizardAnim.SetBool("Death", false);
+        capsule.enabled = true;
+        //hpbarPos.gameObject.SetActive(true);
+        maxHp *= 2.5f;
+        curHp = maxHp;
+        damage *= 1.5f;
+        portalOff?.Invoke();
+    }
 
     private void Turn()
     {
@@ -86,7 +100,8 @@ public class Wizard : MonoBehaviour
     {
         wizardAnim.SetBool("Death", true);
         capsule.enabled = false;
-        hpbarPos.gameObject.SetActive(false);
+        box.enabled = false;
+        ///hpbarPos.gameObject.SetActive(false);
         portalOn?.Invoke();
     }
 
