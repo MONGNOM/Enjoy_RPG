@@ -24,6 +24,7 @@ public class TitleTouch : MonoBehaviour
         titleText.gameObject.SetActive(false);
         textBlink.SetActive(false);
         touchPanel.SetActive(false);
-        loginPanel.SetActive(true);
+        LoadingController.LoadScene("MGameScene");
+        //loginPanel.SetActive(true);
     }
 }

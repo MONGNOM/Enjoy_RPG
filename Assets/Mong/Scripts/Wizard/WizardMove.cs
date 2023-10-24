@@ -26,6 +26,7 @@ public class WizardMove : StateMachineBehaviour
         warrior = collider.GetComponent<Warrior>();
         if (warrior != null)
         {
+            Debug.Log("플레이어가 범위 안에있음");
             animator.SetTrigger("Attack");
         }
     }
